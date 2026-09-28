@@ -1,0 +1,5 @@
+# 测试/验收产物
+.verify/
+node_modules/
+*.log
+.DS_Store
