@@ -48,13 +48,17 @@
      模板 A：TWINKLE.STAR 竖版 1000 × 1450
   ============================================================ */
   #tplA{
-    width:1000px; height:1450px; background:#eef3fb; position:relative;
-    border:10px solid #5a86c6; font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+    width:1000px; height:1450px; position:relative; padding:18px;
+    font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+    /* 深蓝星轨花纹外框 */
+    background-color:#3b5a9e;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='white' stroke-opacity='.20' stroke-width='2.5'%3E%3Cpath d='M-30 160 Q 70 30 250 70'/%3E%3Cpath d='M-30 185 Q 80 60 250 100'/%3E%3Cpath d='M-10 -20 Q 120 40 250 -20'/%3E%3C/g%3E%3Cg fill='white' fill-opacity='.45'%3E%3Cpath d='M50 55 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z'/%3E%3Cpath d='M160 140 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z'/%3E%3Ccircle cx='115' cy='25' r='2.5'/%3E%3Ccircle cx='195' cy='195' r='2.5'/%3E%3Ccircle cx='15' cy='120' r='2'/%3E%3C/g%3E%3C/svg%3E");
   }
-  .a-banner{width:100%; height:555px; overflow:hidden; background:#c9d8f0;}
+  .a-inner{position:relative; width:100%; height:100%; background:#f6f9fd; overflow:hidden;}
+  .a-banner{width:100%; height:545px; overflow:hidden; background:#c9d8f0 url("demo/a-banner.jpg") center/cover no-repeat;}
   .a-banner img{width:100%; height:100%; object-fit:cover; display:block;}
   .a-banner .ph{width:100%; height:100%; display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center; color:#5a86c6; font-size:18px; background:repeating-linear-gradient(45deg,#d7e3f6 0 20px,#e4edf9 20px 40px);}
-  .a-head{display:flex; align-items:center; padding:26px 34px 14px;}
+  .a-head{display:flex; align-items:center; padding:22px 34px 12px;}
   .a-logo{
     font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:38px; font-style:italic;
     background:linear-gradient(180deg,#57b6f0,#3f7fe0); -webkit-background-clip:text; background-clip:text; color:transparent;
@@ -62,37 +66,71 @@
   }
   .a-title{
     flex:1; text-align:center; font-size:44px; font-weight:900; letter-spacing:6px;
-    background:linear-gradient(180deg,#6fb6ea,#4a86d8); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .a-title .s1{color:#3d6dbb;}
+  .a-title .s2{
+    background:linear-gradient(180deg,#7cbcec,#4a86d8); -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   .a-date{font-size:30px; font-weight:800; color:#4a86d8; white-space:nowrap;}
   .a-days-row{
-    margin:6px 34px 0; padding:0 14px; display:grid; grid-template-columns:96px 1fr; gap:8px;
+    /* 与下方 .a-cells 网格同起点同宽度（补偿 .a-board 的 3px 边框），保证逐列垂直对齐 */
+    margin:6px 39px 0 25px; padding-left:14px; display:grid; grid-template-columns:100px 1fr; gap:8px;
+  }
+  .a-days-wrap{position:relative; grid-column:2;}
+  /* 原图条带下方的大号日期水印（半透明，贯穿条带上下） */
+  .a-dates{
+    position:absolute; left:0; right:0; top:-6px; z-index:0;
+    display:grid; grid-template-columns:repeat(7,1fr); gap:8px; text-align:center;
+    font-family:"Arial Black",Arial,sans-serif; font-weight:900; font-size:98px; line-height:1;
+    color:rgba(139,151,181,.26); white-space:nowrap; overflow:hidden;
   }
   .a-days{
-    background:#dde5f2; border-radius:12px; display:grid; grid-template-columns:repeat(7,1fr);
-    gap:8px; padding:10px 0; text-align:center; color:#8b97b5;
+    position:relative; z-index:1;
+    background:rgba(222,230,243,.82); border-radius:12px; display:grid; grid-template-columns:repeat(7,1fr);
+    gap:8px; padding:18px 0 12px; text-align:center; color:#8b97b5;
   }
-  .a-days b{display:block; font-size:26px;}
-  .a-days i{display:block; font-style:normal; font-size:15px; font-weight:700; font-family:Arial;}
-  .a-sec{margin:10px 34px 0; border-radius:14px; padding:14px; display:grid; grid-template-columns:96px 1fr; gap:8px; align-content:start; position:relative;}
-  .a-sec::before{
-    content:""; position:absolute; left:-24px; top:-6px; width:10px; height:60%;
-    border-left:4px dashed currentColor; border-top:4px dashed currentColor; border-bottom:4px dashed currentColor; opacity:.35;
+  .a-days > div{position:relative; border-radius:10px; padding:4px 0;}
+  .a-days b{display:block; font-size:32px; color:#768ea8;}
+  .a-days i{display:block; font-style:normal; font-size:20px; font-weight:700; font-family:Arial; color:#a9aeb8;}
+  /* 原图右缘的蓝灰竖条装饰（banner 下方延伸至排期区中部） */
+  .a-edgebar{position:absolute; right:0; top:560px; width:15px; height:480px; background:#7090b8; z-index:2; pointer-events:none;}
+  /* 排期区：外围米色手绘虚线框 + 贴纸装饰 */
+  .a-board{
+    margin:16px 10px 0 20px; border:3px dashed #e0cfa0; border-radius:18px;
+    padding:14px 12px 10px; position:relative;
   }
+  /* 原图排期区四周的手绘涂鸦（橙色系 + 紫色系，位置取自原图） */
+  .a-doodle{position:absolute; z-index:2; pointer-events:none;}
+  .a-doodle.crown{left:142px; top:752px; width:46px;}
+  .a-doodle.gamepad{left:-2px; top:1032px; width:42px;}
+  .a-doodle.hp{right:-6px; top:734px; width:44px;}
+  .a-doodle.mouse{right:-10px; top:878px; width:46px;}
+  .a-doodle.filmr{right:4px; top:928px; width:16px; height:206px;
+    background:repeating-linear-gradient(180deg, #f2c9a0 0 14px, transparent 14px 26px);}
+  .a-doodle.note{right:6px; top:1264px; width:44px;}
+  .a-doodle.cord{right:2px; top:1320px; width:56px;}
+  .a-sec{margin:10px 0 0; border-radius:14px; padding:8px 14px 8px 4px; display:grid; grid-template-columns:100px 1fr; gap:8px; align-content:start; position:relative;}
+  .a-sec:first-child{margin-top:0;}
   .a-row{display:contents;}
-  .a-who{text-align:center; font-size:15px; font-weight:800; display:flex; flex-direction:column; align-items:center; gap:4px;}
+  .a-who{text-align:center; font-size:15px; font-weight:800; line-height:1.2; display:flex; flex-direction:column; align-items:center; gap:2px;}
   .a-avatar{
-    width:64px; height:64px; border-radius:50%; background:#fff center/cover no-repeat;
-    border:3px dashed currentColor; display:flex; align-items:center; justify-content:center;
-    font-size:22px; color:inherit; overflow:hidden;
+    border-radius:12px; background:center/cover no-repeat #fff;
+    display:flex; align-items:center; justify-content:center;
+    color:inherit; overflow:hidden;
   }
   .a-cells{display:grid; grid-template-columns:repeat(7,1fr); gap:8px; flex:1;}
   .a-cell{
-    min-height:64px; display:flex; align-items:center; justify-content:center; border-radius:8px;
+    min-height:64px; display:flex; flex-direction:column; gap:2px; align-items:center; justify-content:center; border-radius:8px;
     font-size:24px; font-weight:800; color:inherit; text-align:center; padding:4px; line-height:1.2;
   }
   .a-cell:not(:empty){
     border:3px dashed currentColor; background:rgba(255,255,255,.65); box-shadow:none !important;
+  }
+  .a-cell .vtag{
+    display:block; width:max-content; background:#fff; color:inherit;
+    font-size:14px; line-height:1; font-weight:800; letter-spacing:1px;
+    padding:3px 9px; border-radius:7px; transform:rotate(-5deg);
+    box-shadow:0 1px 3px rgba(0,0,0,.18); margin-bottom:3px;
   }
   .a-cell.stamp{
     border:none !important; background:transparent !important;
@@ -101,14 +139,14 @@
   .a-note{
     min-height:64px; display:flex; align-items:center; justify-content:center;
     text-align:center; font-size:52px; font-weight:900; letter-spacing:10px;
-    color:rgba(255,255,255,.9); text-shadow:0 2px 0 rgba(0,0,0,.05);
+    color:inherit; background:rgba(255,255,255,.8);
+    border:3px dashed currentColor; border-radius:16px; padding:6px 10px;
   }
-  .sec-yellow{background:#fdf3d8; color:#e0a63c;}
-  .sec-blue{background:#ddeafb; color:#4a86d8;}
-  .sec-pink{background:#fbdff0; color:#e86ba4;}
-  .sec-green{background:#fbe3ea; color:#e87f96;}
-  .sec-purple{background:#e9e0f8; color:#8a6bd0;}
-  .a-corner{position:absolute; right:26px; font-size:13px; color:#c2a35a; writing-mode:vertical-rl;}
+  .sec-yellow{background:#fff8ec; color:#e0a63c;}
+  .sec-blue{background:#f0f7ff; color:#4a86d8;}
+  .sec-pink{background:#fff4fc; color:#e86ba4;}
+  .sec-green{background:#fff5f6; color:#e87f96;}
+  .sec-purple{background:#f6effe; color:#8a6bd0;}
 
   /* ============================================================
      模板 B：一周排班表 横版 1600 × 1072
@@ -138,10 +176,10 @@
   .b-brand span{
     width:74px; height:74px; border-radius:50%; border:4px solid #2e6b52; background:#f2efe6;
     display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:900; color:#c0392b;
-    margin:0 -8px;
+    margin:0 -8px; font-family:"Songti SC","STSong","SimSun",serif;
   }
-  .b-title{text-align:center; font-size:120px; font-weight:900; letter-spacing:24px; margin:18px 0 4px; color:#7fa590;}
-  .b-sub{text-align:center; font-size:40px; font-weight:800; letter-spacing:6px; color:#7fa590;}
+  .b-title{text-align:center; font-size:138px; font-weight:900; letter-spacing:30px; margin:14px 0 0 30px; color:#9ab6a1;}
+  .b-sub{text-align:center; font-size:40px; font-weight:800; letter-spacing:6px; color:#6b8f7a;}
   .b-stars{text-align:center; font-size:16px; letter-spacing:10px; color:#7fa590; margin:4px 0 14px;}
   .b-members{display:flex; gap:14px; margin:0 0 10px 6px;}
   .b-members .m{
@@ -163,143 +201,89 @@
     font-size:38px; font-weight:900; padding:8px; word-break:break-all; line-height:1.35;
   }
   .b-cell:nth-child(7n){border-right:none;}
+  /* 周一「沐又双播」整格跨两行 */
+  .b-cell.span2{grid-row:span 2; min-height:304px; font-size:46px; letter-spacing:8px; line-height:1.5;}
+  /* 骑在格线上的成员小圆章 */
+  .b-pin{
+    position:absolute; right:-6px; bottom:-17px; width:44px; height:44px; border-radius:50%;
+    color:#fff; font-size:22px; font-weight:800; font-style:normal;
+    display:flex; align-items:center; justify-content:center;
+    border:3px solid #f2efe6; box-shadow:0 2px 5px rgba(0,0,0,.16); z-index:3;
+  }
   .b-cell.stamp{color:#9dc3ae; font-size:110px !important; font-weight:900;}
   .b-cell.stamp::before{
     content:""; position:absolute; width:130px; height:130px; border-radius:50%;
     border:5px solid rgba(157,195,174,.55); background:rgba(157,195,174,.15);
   }
   .b-foot{display:flex; flex-direction:column; align-items:center; margin-top:16px;}
+  .b-cloud{border:4px solid #2e6b52; border-radius:46% 54% 48% 52% / 58% 46% 54% 42%; padding:3px; display:inline-block;}
+  .b-cloud .in{border:3px solid #2e6b52; border-radius:52% 48% 55% 45% / 46% 55% 45% 54%; padding:0 26px;}
   .b-logo{font-size:44px; font-weight:900; color:#2e6b52; letter-spacing:4px;}
-  .b-logo small{display:block; text-align:center; font-size:16px; letter-spacing:8px; font-family:Arial; font-weight:700;}
+  .b-logo small{display:block; text-align:center; font-size:16px; letter-spacing:6px; font-family:Arial; font-weight:700;}
   .b-wave{
     position:absolute; left:0; right:0; bottom:0; height:70px; z-index:1; pointer-events:none;
-    background:
-      radial-gradient(circle at 25px 70px, transparent 24px, rgba(46,107,82,.35) 25px 33px, transparent 34px),
-      radial-gradient(circle at 75px 70px, transparent 24px, rgba(46,107,82,.35) 25px 33px, transparent 34px);
-    background-size:100px 70px; background-repeat:repeat-x;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='70' fill='none' stroke='%232e6b52' stroke-opacity='.5' stroke-width='3'%3E%3Cpath d='M0 44 a22 22 0 0 1 44 0 M38 44 a22 22 0 0 1 44 0 M76 44 a22 22 0 0 1 44 0'/%3E%3Cpath d='M-22 68 a22 22 0 0 1 44 0 M22 68 a22 22 0 0 1 44 0 M60 68 a22 22 0 0 1 44 0 M98 68 a22 22 0 0 1 44 0'/%3E%3C/svg%3E");
+    background-size:120px 70px; background-repeat:repeat-x;
   }
   /* ============================================================
      模板 C：手帐撕纸周计划 1080 × 1527
+     背景直接取自 demo 原图（木纹 / 皱纸 / 长尾夹 / 贴纸与原图像素一致），
+     手写文字为可编辑覆盖层；头像徽章与两枚贴纸可点击替换。
   ============================================================ */
   #tplC{
-    width:1080px; height:1527px; position:relative; overflow:hidden; color:#b8352c;
-    font-family:"Yuanti SC","STYuanti","YouYuan","幼圆","PingFang SC","Microsoft YaHei",sans-serif;
-    /* 木纹桌面：横向木纹条纹 + 板缝 + 底色 */
-    background:
-      repeating-linear-gradient(178deg, rgba(0,0,0,.13) 0 2px, transparent 2px 52px),
-      repeating-linear-gradient(182deg, rgba(255,255,255,.045) 0 16px, transparent 16px 64px),
-      linear-gradient(180deg, transparent 0 208px, rgba(24,15,8,.5) 208px 213px, transparent 213px),
-      linear-gradient(180deg, transparent 0 764px, rgba(24,15,8,.42) 764px 769px, transparent 769px),
-      linear-gradient(180deg, transparent 0 1288px, rgba(24,15,8,.5) 1288px 1293px, transparent 1293px),
-      radial-gradient(90% 60% at 82% 8%, rgba(255,225,180,.1), transparent 60%),
-      linear-gradient(180deg,#6f523a,#5c452f 45%,#4c3926);
+    width:1080px; height:1527px; position:relative; overflow:hidden; color:#bf3a2b;
+    font-family:"Chalkboard SE","HanziPen SC","Wawati SC","Xingkai SC","STXingkai","Kaiti SC","楷体","KaiTi","Yuanti SC","YouYuan","幼圆","PingFang SC","Microsoft YaHei",sans-serif;
+    background:url("demo/c-bg.jpg") 0 0/100% 100% no-repeat;
   }
-  .c-paper{
-    position:absolute; left:34px; right:34px; top:118px; bottom:76px;
-    transform:rotate(-1.3deg);
-    border-radius:18px 26px 14px 30px / 26px 16px 30px 14px;
-    /* 皱纸：多层斜向高光 / 折痕阴影 */
-    background:
-      linear-gradient(112deg, rgba(255,255,255,.5) 0 5%, transparent 8% 16%, rgba(150,128,88,.12) 18% 20%, transparent 23% 31%, rgba(255,255,255,.34) 34% 36%, transparent 39% 48%, rgba(150,128,88,.12) 51% 53%, transparent 56% 64%, rgba(255,255,255,.3) 67% 69%, transparent 72% 83%, rgba(150,128,88,.1) 86% 88%, transparent 91%),
-      linear-gradient(24deg, rgba(255,255,255,.32) 0 4%, transparent 8% 23%, rgba(150,128,88,.1) 27% 29%, transparent 33% 56%, rgba(255,255,255,.26) 61% 63%, transparent 67% 90%, rgba(150,128,88,.1) 94% 96%, transparent 98%),
-      radial-gradient(90% 70% at 18% 10%, rgba(255,255,255,.45), transparent 45%),
-      radial-gradient(100% 80% at 88% 92%, rgba(145,118,76,.2), transparent 50%),
-      radial-gradient(60% 40% at 70% 30%, rgba(160,135,90,.08), transparent 60%),
-      #f0e9d2;
-    box-shadow: inset 0 0 80px rgba(140,112,64,.25), inset 0 0 8px rgba(120,95,50,.35), 0 26px 55px rgba(12,6,1,.6);
-  }
-  .c-holes{
-    position:absolute; left:-4px; top:46px; bottom:46px; width:30px;
-    display:flex; flex-direction:column; justify-content:space-between; align-items:center;
-  }
-  .c-holes i{
-    width:20px; height:14px; border-radius:50%;
-    background:radial-gradient(ellipse at 45% 40%, #2a1d12, #0c0704 75%);
-    box-shadow:inset 0 2px 3px rgba(0,0,0,.9), 0 1px 0 rgba(255,255,255,.55);
-  }
-  /* 长尾夹 */
-  .c-clip{position:absolute; left:96px; top:30px; width:196px; height:174px; z-index:6; transform:rotate(-9deg); pointer-events:none;}
-  .c-clip .handle{
-    position:absolute; top:0; width:84px; height:66px;
-    border:11px solid #b9bfc7; border-bottom:none; border-radius:48px 48px 0 0;
-    box-shadow:inset 0 0 0 3px rgba(255,255,255,.35), 0 3px 5px rgba(0,0,0,.4);
-  }
-  .c-clip .handle.l{left:10px; transform:rotate(-6deg);}
-  .c-clip .handle.r{right:10px; transform:rotate(7deg);}
-  .c-clip .body{
-    position:absolute; bottom:0; left:0; right:0; height:92px;
-    background:linear-gradient(180deg,#3a3d42,#15161a 60%,#08090b);
-    border-radius:12px 12px 16px 16px;
-    box-shadow:inset 0 3px 0 rgba(255,255,255,.22), inset 0 -6px 10px rgba(0,0,0,.7), 0 10px 16px rgba(0,0,0,.45);
-  }
-  .c-clip .body::before{
-    content:""; position:absolute; left:16px; right:16px; top:12px; height:8px;
-    border-radius:6px; background:rgba(255,255,255,.14);
-  }
-  /* 纸飞机涂鸦 */
-  .c-plane{position:absolute; left:356px; top:36px; width:290px; height:102px; opacity:.8; transform:rotate(2deg); z-index:5; pointer-events:none;}
-  /* 头像徽章（条纹圆标，可替换头像） */
-  .c-ava{
-    position:absolute; top:38px; right:30px; width:200px; height:200px; border-radius:50%; z-index:7;
-    background:repeating-linear-gradient(62deg, #cd4437 0 20px, #f6ead0 20px 40px);
-    border:5px solid #fff8ec;
-    box-shadow:0 12px 26px rgba(0,0,0,.5), inset 0 0 0 6px rgba(255,252,244,.85);
-    display:flex; align-items:center; justify-content:center; font-size:92px;
-    transform:rotate(5deg); overflow:hidden; text-shadow:0 3px 6px rgba(0,0,0,.25);
-  }
-  /* 标题区 */
-  .c-titles{position:absolute; left:84px; right:110px; top:36px; text-align:center; z-index:3; pointer-events:none;}
+  /* 标题区（覆盖在原手写字擦除后的位置上） */
+  .c-titles{position:absolute; left:0; top:244px; width:984px; text-align:center; z-index:3; pointer-events:none;}
   .c-titles [contenteditable]{pointer-events:auto;}
-  .c-t1{display:inline-block; font-size:50px; font-weight:900; letter-spacing:12px; transform:rotate(-1.5deg);}
+  .c-t1{display:inline-block; font-size:52px; font-weight:900; letter-spacing:8px; transform:rotate(-2deg); margin-top:8px;}
   .c-t2{
-    display:inline-block; width:100%;
+    display:block; width:100%;
     font-family:"Chalkboard SE","Comic Sans MS","Marker Felt","Segoe Print",cursive;
-    font-size:126px; font-weight:900; line-height:1.15; letter-spacing:2px;
-    transform:rotate(-2deg); margin-top:-10px; text-shadow:3px 4px 0 rgba(130,35,25,.16);
+    font-size:118px; font-weight:900; line-height:1.1; letter-spacing:2px;
+    transform:rotate(-2deg); margin-top:11px; text-shadow:3px 4px 0 rgba(130,35,25,.14);
   }
-  /* 排期表：三列 + 两道手绘竖线 */
-  .c-table{position:absolute; left:70px; right:56px; top:330px; z-index:3;}
-  .c-line{position:absolute; top:-34px; bottom:-70px; width:0; border-left:3px solid rgba(96,78,52,.8);}
-  .c-line.l1{left:31.5%; transform:rotate(.5deg);}
-  .c-line.l2{left:64%; transform:rotate(-.45deg);}
-  .c-row{display:grid; grid-template-columns:31.5% 32.5% 36%; min-height:127px; align-items:center;}
+  /* 排期表：三列文字与原图擦除位置一一对齐 */
+  .c-table{position:absolute; left:0; right:0; top:528px; z-index:3;}
+  .c-row{position:relative; height:125px;}
   .c-day{
-    font-family:"Chalkboard SE","Comic Sans MS","Marker Felt",cursive;
-    font-size:40px; font-weight:800; letter-spacing:4px; text-align:center;
+    position:absolute; left:130px; width:150px; top:50%; transform:translateY(-50%); text-align:center;
+    font-family:"Chalkboard SE","HanziPen SC","Wawati SC","Comic Sans MS","Marker Felt",cursive;
+    font-size:40px; font-weight:800; letter-spacing:4px;
   }
   .c-time{
-    font-family:"Chalkboard SE","Comic Sans MS","Marker Felt",cursive;
-    font-size:42px; font-weight:800; letter-spacing:2px; text-align:center;
+    position:absolute; left:310px; width:240px; top:50%; transform:translateY(-50%); text-align:center;
+    font-family:"Chalkboard SE","HanziPen SC","Wawati SC","Comic Sans MS","Marker Felt",cursive;
+    font-size:42px; font-weight:800; letter-spacing:2px;
   }
-  .c-what{font-size:38px; font-weight:800; letter-spacing:9px; text-align:center; white-space:nowrap;}
-  .c-row:nth-child(odd) .c-day{transform:rotate(-1.2deg);}
-  .c-row:nth-child(even) .c-what{transform:rotate(.8deg);}
-  /* 底部手写批注（双线手绘框） */
-  .c-notebox{position:absolute; left:200px; bottom:64px; transform:rotate(-7deg); z-index:4;}
-  .c-notebox .outer{border:3px solid #b8352c; border-radius:46px 30px 40px 54px / 30px 46px 54px 34px; padding:5px;}
-  .c-notebox .inner{border:3px solid #b8352c; border-radius:26px 42px 30px 46px / 42px 26px 46px 30px; padding:6px 34px;}
-  .c-note{font-size:50px; font-weight:900; letter-spacing:10px; white-space:nowrap;}
-  /* 底部贴纸（可替换） */
+  .c-what{
+    position:absolute; left:560px; width:370px; top:50%; transform:translateY(-50%); text-align:center;
+    font-size:38px; font-weight:800; letter-spacing:6px; white-space:nowrap;
+  }
+  .c-row:nth-child(odd) .c-day{transform:translateY(-50%) rotate(-1.2deg);}
+  .c-row:nth-child(even) .c-what{transform:translateY(-50%) rotate(.8deg);}
+  /* 底部手写批注（双线手绘框，原位重建） */
+  .c-notebox{
+    position:absolute; left:290px; top:1270px; width:400px; height:164px; z-index:4;
+    display:flex; align-items:center; justify-content:center; transform:rotate(-7deg);
+  }
+  .c-notebox .outer{border:3px solid currentColor; border-radius:46px 30px 40px 54px / 30px 46px 54px 34px; padding:5px;}
+  .c-notebox .inner{border:3px solid currentColor; border-radius:26px 42px 30px 46px / 42px 26px 46px 30px; padding:4px 30px;}
+  .c-note{font-size:54px; font-weight:900; letter-spacing:6px; white-space:nowrap;}
+  /* 贴纸（默认图为 demo 原图裁片，与背景像素对齐，点击可替换） */
+  .c-ava{
+    position:absolute; left:766px; top:96px; width:268px; height:268px; border-radius:50%; z-index:6;
+    background:#fff center/cover no-repeat url("demo/c-ava.jpg");
+  }
   .c-sticker-l{
-    position:absolute; left:22px; bottom:52px; width:186px; height:186px; border-radius:50%; z-index:6;
-    background:radial-gradient(circle at 50% 38%, #ecd0a6, #c99f66);
-    box-shadow:0 10px 20px rgba(0,0,0,.4);
-    display:flex; align-items:center; justify-content:center; font-size:104px;
-    transform:rotate(-8deg); overflow:hidden;
+    position:absolute; left:18px; bottom:9px; width:274px; height:250px; z-index:6;
+    background:url("demo/c-sti-l.jpg") center/cover no-repeat;
   }
   .c-sticker-r{
-    position:absolute; right:16px; bottom:-8px; width:296px; height:296px; z-index:6;
-    border-radius:46% 54% 50% 50% / 52% 46% 54% 48%;
-    background:radial-gradient(circle at 50% 36%, #fdf7ec, #edd8bd);
-    box-shadow:0 12px 24px rgba(0,0,0,.45);
-    display:flex; align-items:center; justify-content:center; font-size:168px;
-    transform:rotate(4deg); overflow:hidden;
-  }
-  .c-bubble{
-    position:absolute; right:284px; bottom:252px; z-index:7;
-    background:#fffdf6; border:3px solid #262220; border-radius:50% 50% 50% 10px;
-    padding:12px 18px; font-size:26px; font-weight:900; color:#262220; letter-spacing:3px;
-    transform:rotate(-10deg); box-shadow:0 6px 14px rgba(0,0,0,.3);
+    position:absolute; right:0; bottom:0; width:390px; height:347px; z-index:6;
+    background:url("demo/c-sti-r.jpg") center/cover no-repeat;
   }
 
   /* 导出遮罩 */
@@ -329,20 +313,33 @@
   <!-- ================= 模板 A ================= -->
   <div class="canvas-wrap" id="wrapA">
   <div class="tpl active" id="tplA">
-    <div class="a-banner img-slot" data-img="aBanner">
-      <div class="ph">🖼️ 顶部头图占位<br><small>点击上传横幅图片（约 1000 × 555）</small></div>
-    </div>
+   <div class="a-inner">
+    <div class="a-banner img-slot" data-img="aBanner"></div>
     <div class="a-head">
       <div class="a-logo" contenteditable="true" data-k="aLogo">TWINKLE.STAR</div>
-      <div class="a-title" contenteditable="true" data-k="aTitle">本周直播预告</div>
+      <div class="a-title" contenteditable="true" data-k="aTitle"><span class="s1">本周</span><span class="s2">直播预告</span></div>
       <div class="a-date" contenteditable="true" data-k="aDate">9.28- 10.4</div>
     </div>
-    <div class="a-days-row"><span></span><div class="a-days" contenteditable="true" data-k="aDays" spellcheck="false">
-      <div><b>周一</b><i>Mon</i></div><div><b>周二</b><i>Tues</i></div><div><b>周三</b><i>Wed</i></div>
-      <div><b>周四</b><i>Thur</i></div><div><b>周五</b><i>Fri</i></div><div><b>周六</b><i>Sat</i></div><div><b>周日</b><i>Sun</i></div>
+    <div class="a-days-row"><span></span><div class="a-days-wrap">
+      <div class="a-dates" contenteditable="true" data-k="aDates" spellcheck="false"><span>28</span><span>29</span><span>30</span><span>1</span><span>2</span><span>3</span><span>4</span></div>
+      <div class="a-days" contenteditable="true" data-k="aDays" spellcheck="false">
+        <div><b>周一</b><i>Mon</i></div><div><b>周二</b><i>Tues</i></div><div><b>周三</b><i>Wed</i></div>
+        <div><b>周四</b><i>Thur</i></div><div><b>周五</b><i>Fri</i></div><div><b>周六</b><i>Sat</i></div><div><b>周日</b><i>Sun</i></div>
+      </div>
     </div></div>
-    <div id="aSecs"><!-- JS 生成主播行 --></div>
-    <div class="a-corner" contenteditable="true" data-k="aCorner">每周更新</div>
+    <div class="a-board">
+      <div id="aSecs"><!-- JS 生成主播行 --></div>
+    </div>
+    <!-- 原图右缘 / 左缘的手绘涂鸦（皇冠、游戏手柄、耳机、鼠标、胶片孔、音符、电线） -->
+    <svg class="a-doodle crown" viewBox="0 0 46 32" fill="none"><path d="M6 26 L5 10 L15 19 L23 5 L31 19 L41 10 L40 26 Z" stroke="#ecc9a4" stroke-width="3.5" stroke-linejoin="round"/><path d="M9 30 H37" stroke="#ecc9a4" stroke-width="3" stroke-linecap="round"/></svg>
+    <svg class="a-doodle gamepad" viewBox="0 0 46 32" fill="none"><path d="M12 5 H34 Q44 5 43 16 L41 25 Q40 31 34 29 L28 22 H18 L12 29 Q6 31 5 25 L3 16 Q2 5 12 5 Z" stroke="#f2c9a0" stroke-width="3" stroke-linejoin="round"/><path d="M13 12 v8 M9 16 h8" stroke="#f2c9a0" stroke-width="3" stroke-linecap="round"/><circle cx="33" cy="13" r="2.6" fill="#f2c9a0"/><circle cx="38" cy="19" r="2.6" fill="#f2c9a0"/></svg>
+    <svg class="a-doodle hp" viewBox="0 0 44 42" fill="none"><path d="M6 28 V22 a16 15 0 0 1 32 0 v6" stroke="#f2c9a0" stroke-width="3.5" stroke-linecap="round"/><rect x="2" y="26" width="9" height="14" rx="4" stroke="#f2c9a0" stroke-width="3"/><rect x="33" y="26" width="9" height="14" rx="4" stroke="#f2c9a0" stroke-width="3"/></svg>
+    <svg class="a-doodle mouse" viewBox="0 0 46 52" fill="none"><rect x="6" y="4" width="30" height="42" rx="15" stroke="#f2c9a0" stroke-width="3.5"/><path d="M21 6 V20 M8 20 H34" stroke="#f2c9a0" stroke-width="3"/></svg>
+    <div class="a-doodle filmr"></div>
+    <svg class="a-doodle note" viewBox="0 0 44 48" fill="none"><path d="M14 38 V12 l18 -5 v26" stroke="#b9a8e0" stroke-width="3.5" stroke-linejoin="round"/><ellipse cx="9" cy="38" rx="6" ry="4.5" stroke="#b9a8e0" stroke-width="3"/><ellipse cx="27" cy="33" rx="6" ry="4.5" stroke="#b9a8e0" stroke-width="3"/></svg>
+    <svg class="a-doodle cord" viewBox="0 0 56 100" fill="none"><path d="M46 2 C20 16 52 34 30 52 C14 65 40 78 26 92" stroke="#b9a8e0" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="95" r="3.5" stroke="#b9a8e0" stroke-width="2.5"/></svg>
+   </div>
+   <div class="a-edgebar"></div>
   </div>
   </div>
 
@@ -366,7 +363,9 @@
       <div class="b-members" id="bMembers"><!-- JS 生成成员圆标 --></div>
       <div class="b-grid" id="bGrid"><!-- JS 生成 --></div>
       <div class="b-foot">
-        <div class="b-logo" contenteditable="true" data-k="bLogo">回禧丸子<small contenteditable="true" data-k="bLogoEn">SIXIWANZI</small></div>
+        <div class="b-cloud"><div class="in">
+          <div class="b-logo" contenteditable="true" data-k="bLogo">回禧丸子<small contenteditable="true" data-k="bLogoEn">◇ SIXIWANZI ◇</small></div>
+        </div></div>
       </div>
     </div>
     <div class="b-wave"></div>
@@ -376,37 +375,21 @@
   <!-- ================= 模板 C ================= -->
   <div class="canvas-wrap" id="wrapC" style="display:none">
   <div class="tpl" id="tplC">
-    <!-- 纸飞机涂鸦（木桌区域） -->
-    <svg class="c-plane" viewBox="0 0 300 106" fill="none">
-      <path d="M10 66 L176 20 L282 46 L120 74 Z" stroke="#4a3b2b" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M176 20 L138 68 L120 74" stroke="#4a3b2b" stroke-width="3.5" stroke-linejoin="round"/>
-      <path d="M60 88 l34 -7 M108 82 l20 -4" stroke="#4a3b2b" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"/>
-    </svg>
-    <!-- 长尾夹 -->
-    <div class="c-clip"><div class="handle l"></div><div class="handle r"></div><div class="body"></div></div>
-    <!-- 皱纸主体 -->
-    <div class="c-paper">
-      <div class="c-holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="c-titles">
-        <span class="c-t1" contenteditable="true" data-k="cTitle1" spellcheck="false">-击剑剑本周-</span>
-        <span class="c-t2" contenteditable="true" data-k="cTitle2" spellcheck="false">-Schedule-</span>
-      </div>
-      <div class="c-table" id="cTable"><!-- JS 生成排期行 --></div>
-      <div class="c-notebox">
-        <div class="outer"><div class="inner">
-          <span class="c-note" contenteditable="true" data-k="cNote" spellcheck="false">作业太多惹</span>
-        </div></div>
-      </div>
+    <div class="c-titles">
+      <span class="c-t1" contenteditable="true" data-k="cTitle1" spellcheck="false">-击剑剑本周-</span>
+      <span class="c-t2" contenteditable="true" data-k="cTitle2" spellcheck="false">-Schedule-</span>
     </div>
-    <!-- 条纹头像徽章 -->
-    <div class="c-ava img-slot" data-img="cAva">👸</div>
-    <!-- 底部贴纸 -->
-    <div class="c-sticker-l img-slot" data-img="cStiL">🧸</div>
-    <div class="c-bubble" contenteditable="true" data-k="cBubble" spellcheck="false">怎么力</div>
-    <div class="c-sticker-r img-slot" data-img="cStiR">👧</div>
+    <div class="c-table" id="cTable"><!-- JS 生成排期行 --></div>
+    <div class="c-notebox">
+      <div class="outer"><div class="inner">
+        <span class="c-note" contenteditable="true" data-k="cNote" spellcheck="false">作业太多惹</span>
+      </div></div>
+    </div>
+    <div class="c-ava img-slot" data-img="cAva"></div>
+    <div class="c-sticker-l img-slot" data-img="cStiL"></div>
+    <div class="c-sticker-r img-slot" data-img="cStiR"></div>
   </div>
   </div>
-
 </div>
 
 <div id="exporting">⏳ 正在生成图片，请稍候…</div>
@@ -440,12 +423,21 @@ const DEFAULTS = {
     3:['18:30 恬豆','21:00 又一'], 4:['18:30 梨安','21:00 沐霖'],
     5:['18:30 又一','21:00 恬豆'], 6:['18:30 沐霖','21:00 梨安'],
   },
+  /* 骑缝小圆章：键为 列_行，值为成员单字（颜色取自 bMembers） */
+  bPins: {
+    '0_0':['又'], '1_0':['又'], '1_1':['梨'],
+    '3_0':['恬'], '3_1':['又'],
+    '4_0':['梨'], '4_1':['沐'],
+    '5_0':['又'], '5_1':['恬'],
+    '6_0':['沐'], '6_1':['梨'],
+  },
 };
 let state = load() || structuredClone(DEFAULTS);
 function load(){ try{ return JSON.parse(localStorage.getItem('tplState')); }catch(e){ return null; } }
 function save(){ localStorage.setItem('tplState', JSON.stringify(state)); }
 
 /* ============ 模板 A 渲染 ============ */
+const AVA_H = [79, 78, 77, 90, 64];   // 各行 chibi 头像裁片高度（与 demo 原图一致）
 function renderA(){
   const box = document.getElementById('aSecs');
   box.innerHTML = '';
@@ -453,16 +445,21 @@ function renderA(){
     const sec = document.createElement('div');
     sec.className = 'a-sec ' + r.cls;
     if(r.note){
-      sec.innerHTML = `<div class="a-row" style="grid-template-columns:96px 1fr">
-        <div class="a-who"><div class="a-avatar img-slot" data-img="aAva${ri}">🐳</div><div contenteditable="true" data-k="aName${ri}">${r.name}</div></div>
+      sec.innerHTML = `<div class="a-row" style="grid-template-columns:100px 1fr">
+        <div class="a-who"><div class="a-avatar img-slot" data-img="aAva${ri}" style="width:98px;height:${AVA_H[ri]}px;background-image:url('demo/a-ava${ri}.jpg')"></div><div contenteditable="true" data-k="aName${ri}">${r.name}</div></div>
         <div class="a-note" contenteditable="true" data-k="aNote${ri}">${r.note}</div></div>`;
     }else{
       let cells = '';
       for(let d=0; d<7; d++){
-        cells += `<div class="a-cell" contenteditable="true" data-k="aCell${ri}_${d}" spellcheck="false">${r.cells[d]||''}</div>`;
+        const v = r.cells[d]||'';
+        let inner = v;
+        if(/^video/i.test(v.trim())){
+          inner = `<span class="vtag">video</span>${v.trim().replace(/^video/i,'').trim()}`;
+        }
+        cells += `<div class="a-cell" contenteditable="true" data-k="aCell${ri}_${d}" spellcheck="false">${inner}</div>`;
       }
       sec.innerHTML = `<div class="a-row">
-        <div class="a-who"><div class="a-avatar img-slot" data-img="aAva${ri}">🐣</div><div contenteditable="true" data-k="aName${ri}">${r.name}</div></div>
+        <div class="a-who"><div class="a-avatar img-slot" data-img="aAva${ri}" style="width:98px;height:${AVA_H[ri]}px;background-image:url('demo/a-ava${ri}.jpg')"></div><div contenteditable="true" data-k="aName${ri}">${r.name}</div></div>
         <div class="a-cells">${cells}</div></div>`;
     }
     box.appendChild(sec);
@@ -473,21 +470,28 @@ function renderA(){
 
 /* ============ 模板 B 渲染 ============ */
 function renderB(){
+  if(!state.bPins) state.bPins = structuredClone(DEFAULTS.bPins);
   const mBox = document.getElementById('bMembers');
   mBox.innerHTML = state.bMembers.map((m,i)=>
     `<div class="m img-slot" data-img="bMem${i}" style="background:${m.color}; width:52px;height:52px" contenteditable="true" data-k="bMem${i}">${m.ch}</div>`).join('');
   const grid = document.getElementById('bGrid');
+  /* 周一第二格为空 → 第一格跨两行（demo 的“沐又双播”大格） */
+  const mondaySpan = state.bCells[0] && !state.bCells[0][1];
+  const pinHTML = key => (state.bPins[key]||[]).map(ch=>{
+    const m = state.bMembers.find(x=>x.ch===ch);
+    return `<i class="b-pin" style="background:${m?m.color:'#7fa590'}" contenteditable="true" data-k="bPin${key}">${ch}</i>`;
+  }).join('');
+  const cellHTML = (c,row,extra)=>{
+    const v = (state.bCells[c]&&state.bCells[c][row])||'';
+    const stamp = v==='休' ? ' stamp' : '';
+    return `<div class="b-cell${stamp}${extra}" contenteditable="true" data-k="bCell${c}_${row}" spellcheck="false">${stamp?'休':v.replace(/\n/g,'<br>')}${pinHTML(c+'_'+row)}</div>`;
+  };
   let html = state.bDays.map((d,i)=>{
     const [zh,dt] = d.split('|');
     return `<div class="b-dayhead"><b contenteditable="true" data-k="bDay${i}">${zh}</b><i contenteditable="true" data-k="bDate${i}">${dt}</i></div>`;
   }).join('');
-  for(let row=0; row<2; row++){
-    for(let c=0; c<7; c++){
-      const v = (state.bCells[c]&&state.bCells[c][row])||'';
-      const stamp = v==='休' ? ' stamp' : '';
-      html += `<div class="b-cell${stamp}" contenteditable="true" data-k="bCell${c}_${row}" spellcheck="false">${stamp?'休':v.replace(/\n/g,'<br>')}</div>`;
-    }
-  }
+  for(let c=0; c<7; c++) html += cellHTML(c,0, (c===0&&mondaySpan)?' span2':'');
+  for(let c=0; c<7; c++){ if(c===0&&mondaySpan) continue; html += cellHTML(c,1,''); }
   grid.innerHTML = html;
   bindAll();
 }
@@ -496,14 +500,12 @@ function renderB(){
 function renderC(){
   if(!state.cRows) state.cRows = structuredClone(DEFAULTS.cRows);
   const box = document.getElementById('cTable');
-  box.innerHTML =
-    '<div class="c-line l1"></div><div class="c-line l2"></div>' +
-    state.cRows.map((r,i)=>
-      `<div class="c-row">`+
-        `<div class="c-day" contenteditable="true" data-k="cDay${i}" spellcheck="false">${r.day}</div>`+
-        `<div class="c-time" contenteditable="true" data-k="cTime${i}" spellcheck="false">${r.time}</div>`+
-        `<div class="c-what" contenteditable="true" data-k="cWhat${i}" spellcheck="false">${r.what}</div>`+
-      `</div>`).join('');
+  box.innerHTML = state.cRows.map((r,i)=>
+    `<div class="c-row">`+
+      `<div class="c-day" contenteditable="true" data-k="cDay${i}" spellcheck="false">${r.day}</div>`+
+      `<div class="c-time" contenteditable="true" data-k="cTime${i}" spellcheck="false">${r.time}</div>`+
+      `<div class="c-what" contenteditable="true" data-k="cWhat${i}" spellcheck="false">${r.what}</div>`+
+    `</div>`).join('');
   bindAll();
   restoreImgs();
 }
