@@ -178,6 +178,130 @@
       radial-gradient(circle at 75px 70px, transparent 24px, rgba(46,107,82,.35) 25px 33px, transparent 34px);
     background-size:100px 70px; background-repeat:repeat-x;
   }
+  /* ============================================================
+     模板 C：手帐撕纸周计划 1080 × 1527
+  ============================================================ */
+  #tplC{
+    width:1080px; height:1527px; position:relative; overflow:hidden; color:#b8352c;
+    font-family:"Yuanti SC","STYuanti","YouYuan","幼圆","PingFang SC","Microsoft YaHei",sans-serif;
+    /* 木纹桌面：横向木纹条纹 + 板缝 + 底色 */
+    background:
+      repeating-linear-gradient(178deg, rgba(0,0,0,.13) 0 2px, transparent 2px 52px),
+      repeating-linear-gradient(182deg, rgba(255,255,255,.045) 0 16px, transparent 16px 64px),
+      linear-gradient(180deg, transparent 0 208px, rgba(24,15,8,.5) 208px 213px, transparent 213px),
+      linear-gradient(180deg, transparent 0 764px, rgba(24,15,8,.42) 764px 769px, transparent 769px),
+      linear-gradient(180deg, transparent 0 1288px, rgba(24,15,8,.5) 1288px 1293px, transparent 1293px),
+      radial-gradient(90% 60% at 82% 8%, rgba(255,225,180,.1), transparent 60%),
+      linear-gradient(180deg,#6f523a,#5c452f 45%,#4c3926);
+  }
+  .c-paper{
+    position:absolute; left:34px; right:34px; top:118px; bottom:76px;
+    transform:rotate(-1.3deg);
+    border-radius:18px 26px 14px 30px / 26px 16px 30px 14px;
+    /* 皱纸：多层斜向高光 / 折痕阴影 */
+    background:
+      linear-gradient(112deg, rgba(255,255,255,.5) 0 5%, transparent 8% 16%, rgba(150,128,88,.12) 18% 20%, transparent 23% 31%, rgba(255,255,255,.34) 34% 36%, transparent 39% 48%, rgba(150,128,88,.12) 51% 53%, transparent 56% 64%, rgba(255,255,255,.3) 67% 69%, transparent 72% 83%, rgba(150,128,88,.1) 86% 88%, transparent 91%),
+      linear-gradient(24deg, rgba(255,255,255,.32) 0 4%, transparent 8% 23%, rgba(150,128,88,.1) 27% 29%, transparent 33% 56%, rgba(255,255,255,.26) 61% 63%, transparent 67% 90%, rgba(150,128,88,.1) 94% 96%, transparent 98%),
+      radial-gradient(90% 70% at 18% 10%, rgba(255,255,255,.45), transparent 45%),
+      radial-gradient(100% 80% at 88% 92%, rgba(145,118,76,.2), transparent 50%),
+      radial-gradient(60% 40% at 70% 30%, rgba(160,135,90,.08), transparent 60%),
+      #f0e9d2;
+    box-shadow: inset 0 0 80px rgba(140,112,64,.25), inset 0 0 8px rgba(120,95,50,.35), 0 26px 55px rgba(12,6,1,.6);
+  }
+  .c-holes{
+    position:absolute; left:-4px; top:46px; bottom:46px; width:30px;
+    display:flex; flex-direction:column; justify-content:space-between; align-items:center;
+  }
+  .c-holes i{
+    width:20px; height:14px; border-radius:50%;
+    background:radial-gradient(ellipse at 45% 40%, #2a1d12, #0c0704 75%);
+    box-shadow:inset 0 2px 3px rgba(0,0,0,.9), 0 1px 0 rgba(255,255,255,.55);
+  }
+  /* 长尾夹 */
+  .c-clip{position:absolute; left:96px; top:30px; width:196px; height:174px; z-index:6; transform:rotate(-9deg); pointer-events:none;}
+  .c-clip .handle{
+    position:absolute; top:0; width:84px; height:66px;
+    border:11px solid #b9bfc7; border-bottom:none; border-radius:48px 48px 0 0;
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.35), 0 3px 5px rgba(0,0,0,.4);
+  }
+  .c-clip .handle.l{left:10px; transform:rotate(-6deg);}
+  .c-clip .handle.r{right:10px; transform:rotate(7deg);}
+  .c-clip .body{
+    position:absolute; bottom:0; left:0; right:0; height:92px;
+    background:linear-gradient(180deg,#3a3d42,#15161a 60%,#08090b);
+    border-radius:12px 12px 16px 16px;
+    box-shadow:inset 0 3px 0 rgba(255,255,255,.22), inset 0 -6px 10px rgba(0,0,0,.7), 0 10px 16px rgba(0,0,0,.45);
+  }
+  .c-clip .body::before{
+    content:""; position:absolute; left:16px; right:16px; top:12px; height:8px;
+    border-radius:6px; background:rgba(255,255,255,.14);
+  }
+  /* 纸飞机涂鸦 */
+  .c-plane{position:absolute; left:356px; top:36px; width:290px; height:102px; opacity:.8; transform:rotate(2deg); z-index:5; pointer-events:none;}
+  /* 头像徽章（条纹圆标，可替换头像） */
+  .c-ava{
+    position:absolute; top:38px; right:30px; width:200px; height:200px; border-radius:50%; z-index:7;
+    background:repeating-linear-gradient(62deg, #cd4437 0 20px, #f6ead0 20px 40px);
+    border:5px solid #fff8ec;
+    box-shadow:0 12px 26px rgba(0,0,0,.5), inset 0 0 0 6px rgba(255,252,244,.85);
+    display:flex; align-items:center; justify-content:center; font-size:92px;
+    transform:rotate(5deg); overflow:hidden; text-shadow:0 3px 6px rgba(0,0,0,.25);
+  }
+  /* 标题区 */
+  .c-titles{position:absolute; left:84px; right:110px; top:36px; text-align:center; z-index:3; pointer-events:none;}
+  .c-titles [contenteditable]{pointer-events:auto;}
+  .c-t1{display:inline-block; font-size:50px; font-weight:900; letter-spacing:12px; transform:rotate(-1.5deg);}
+  .c-t2{
+    display:inline-block; width:100%;
+    font-family:"Chalkboard SE","Comic Sans MS","Marker Felt","Segoe Print",cursive;
+    font-size:126px; font-weight:900; line-height:1.15; letter-spacing:2px;
+    transform:rotate(-2deg); margin-top:-10px; text-shadow:3px 4px 0 rgba(130,35,25,.16);
+  }
+  /* 排期表：三列 + 两道手绘竖线 */
+  .c-table{position:absolute; left:70px; right:56px; top:330px; z-index:3;}
+  .c-line{position:absolute; top:-34px; bottom:-70px; width:0; border-left:3px solid rgba(96,78,52,.8);}
+  .c-line.l1{left:31.5%; transform:rotate(.5deg);}
+  .c-line.l2{left:64%; transform:rotate(-.45deg);}
+  .c-row{display:grid; grid-template-columns:31.5% 32.5% 36%; min-height:127px; align-items:center;}
+  .c-day{
+    font-family:"Chalkboard SE","Comic Sans MS","Marker Felt",cursive;
+    font-size:40px; font-weight:800; letter-spacing:4px; text-align:center;
+  }
+  .c-time{
+    font-family:"Chalkboard SE","Comic Sans MS","Marker Felt",cursive;
+    font-size:42px; font-weight:800; letter-spacing:2px; text-align:center;
+  }
+  .c-what{font-size:38px; font-weight:800; letter-spacing:9px; text-align:center; white-space:nowrap;}
+  .c-row:nth-child(odd) .c-day{transform:rotate(-1.2deg);}
+  .c-row:nth-child(even) .c-what{transform:rotate(.8deg);}
+  /* 底部手写批注（双线手绘框） */
+  .c-notebox{position:absolute; left:200px; bottom:64px; transform:rotate(-7deg); z-index:4;}
+  .c-notebox .outer{border:3px solid #b8352c; border-radius:46px 30px 40px 54px / 30px 46px 54px 34px; padding:5px;}
+  .c-notebox .inner{border:3px solid #b8352c; border-radius:26px 42px 30px 46px / 42px 26px 46px 30px; padding:6px 34px;}
+  .c-note{font-size:50px; font-weight:900; letter-spacing:10px; white-space:nowrap;}
+  /* 底部贴纸（可替换） */
+  .c-sticker-l{
+    position:absolute; left:22px; bottom:52px; width:186px; height:186px; border-radius:50%; z-index:6;
+    background:radial-gradient(circle at 50% 38%, #ecd0a6, #c99f66);
+    box-shadow:0 10px 20px rgba(0,0,0,.4);
+    display:flex; align-items:center; justify-content:center; font-size:104px;
+    transform:rotate(-8deg); overflow:hidden;
+  }
+  .c-sticker-r{
+    position:absolute; right:16px; bottom:-8px; width:296px; height:296px; z-index:6;
+    border-radius:46% 54% 50% 50% / 52% 46% 54% 48%;
+    background:radial-gradient(circle at 50% 36%, #fdf7ec, #edd8bd);
+    box-shadow:0 12px 24px rgba(0,0,0,.45);
+    display:flex; align-items:center; justify-content:center; font-size:168px;
+    transform:rotate(4deg); overflow:hidden;
+  }
+  .c-bubble{
+    position:absolute; right:284px; bottom:252px; z-index:7;
+    background:#fffdf6; border:3px solid #262220; border-radius:50% 50% 50% 10px;
+    padding:12px 18px; font-size:26px; font-weight:900; color:#262220; letter-spacing:3px;
+    transform:rotate(-10deg); box-shadow:0 6px 14px rgba(0,0,0,.3);
+  }
+
   /* 导出遮罩 */
   #exporting{
     position:fixed; inset:0; background:rgba(20,24,36,.7); z-index:999; display:none;
@@ -192,6 +316,7 @@
   <div class="seg">
     <button id="tabA" class="active" onclick="switchTpl('A')">模板 A · 竖版周预告</button>
     <button id="tabB" onclick="switchTpl('B')">模板 B · 横版排班表</button>
+    <button id="tabC" onclick="switchTpl('C')">模板 C · 手帐周计划</button>
   </div>
   <button class="btn" onclick="addStamp()">加盖 / 取消「休·调养」章（点击格子后使用）</button>
   <button class="btn" onclick="resetTpl()">恢复占位内容</button>
@@ -248,6 +373,40 @@
   </div>
   </div>
 
+  <!-- ================= 模板 C ================= -->
+  <div class="canvas-wrap" id="wrapC" style="display:none">
+  <div class="tpl" id="tplC">
+    <!-- 纸飞机涂鸦（木桌区域） -->
+    <svg class="c-plane" viewBox="0 0 300 106" fill="none">
+      <path d="M10 66 L176 20 L282 46 L120 74 Z" stroke="#4a3b2b" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M176 20 L138 68 L120 74" stroke="#4a3b2b" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M60 88 l34 -7 M108 82 l20 -4" stroke="#4a3b2b" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9"/>
+    </svg>
+    <!-- 长尾夹 -->
+    <div class="c-clip"><div class="handle l"></div><div class="handle r"></div><div class="body"></div></div>
+    <!-- 皱纸主体 -->
+    <div class="c-paper">
+      <div class="c-holes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="c-titles">
+        <span class="c-t1" contenteditable="true" data-k="cTitle1" spellcheck="false">-击剑剑本周-</span>
+        <span class="c-t2" contenteditable="true" data-k="cTitle2" spellcheck="false">-Schedule-</span>
+      </div>
+      <div class="c-table" id="cTable"><!-- JS 生成排期行 --></div>
+      <div class="c-notebox">
+        <div class="outer"><div class="inner">
+          <span class="c-note" contenteditable="true" data-k="cNote" spellcheck="false">作业太多惹</span>
+        </div></div>
+      </div>
+    </div>
+    <!-- 条纹头像徽章 -->
+    <div class="c-ava img-slot" data-img="cAva">👸</div>
+    <!-- 底部贴纸 -->
+    <div class="c-sticker-l img-slot" data-img="cStiL">🧸</div>
+    <div class="c-bubble" contenteditable="true" data-k="cBubble" spellcheck="false">怎么力</div>
+    <div class="c-sticker-r img-slot" data-img="cStiR">👧</div>
+  </div>
+  </div>
+
 </div>
 
 <div id="exporting">⏳ 正在生成图片，请稍候…</div>
@@ -268,6 +427,14 @@ const DEFAULTS = {
     {ch:'恬', color:'#8fb8e0'}, {ch:'又', color:'#e8c94a'},
   ],
   bDays: ['周一|09.28','周二|09.29','周三|09.30','周四|10.01','周五|10.02','周六|10.03','周日|10.04'],
+  cRows: [
+    {day:'TUE',  time:'10:30 PM', what:'小剑の居家电台'},
+    {day:'WED',  time:'1:30 PM',  what:'薪水老偷'},
+    {day:'THUR', time:'定休。。',  what:'少女学习中'},
+    {day:'FRI',  time:'10:00 AM', what:'早安贼k！！'},
+    {day:'SAT',  time:'1:00 PM',  what:'夜游芝加哥'},
+    {day:'SUN',  time:'突',       what:''},
+  ],
   bCells: {
     0:['沐又\n双播',''], 1:['18:30 又一','21:00 梨安'], 2:['休',''],
     3:['18:30 恬豆','21:00 又一'], 4:['18:30 梨安','21:00 沐霖'],
@@ -325,6 +492,22 @@ function renderB(){
   bindAll();
 }
 
+/* ============ 模板 C 渲染 ============ */
+function renderC(){
+  if(!state.cRows) state.cRows = structuredClone(DEFAULTS.cRows);
+  const box = document.getElementById('cTable');
+  box.innerHTML =
+    '<div class="c-line l1"></div><div class="c-line l2"></div>' +
+    state.cRows.map((r,i)=>
+      `<div class="c-row">`+
+        `<div class="c-day" contenteditable="true" data-k="cDay${i}" spellcheck="false">${r.day}</div>`+
+        `<div class="c-time" contenteditable="true" data-k="cTime${i}" spellcheck="false">${r.time}</div>`+
+        `<div class="c-what" contenteditable="true" data-k="cWhat${i}" spellcheck="false">${r.what}</div>`+
+      `</div>`).join('');
+  bindAll();
+  restoreImgs();
+}
+
 /* ============ 通用：编辑绑定 / 自动保存 / 图片上传 ============ */
 function bindAll(){
   document.querySelectorAll('[contenteditable]').forEach(el=>{
@@ -376,10 +559,13 @@ function restoreImgs(){
 function switchTpl(t){
   document.getElementById('tplA').classList.toggle('active', t==='A');
   document.getElementById('tplB').classList.toggle('active', t==='B');
+  document.getElementById('tplC').classList.toggle('active', t==='C');
   document.getElementById('wrapA').style.display = t==='A'?'block':'none';
   document.getElementById('wrapB').style.display = t==='B'?'block':'none';
+  document.getElementById('wrapC').style.display = t==='C'?'block':'none';
   document.getElementById('tabA').classList.toggle('active', t==='A');
   document.getElementById('tabB').classList.toggle('active', t==='B');
+  document.getElementById('tabC').classList.toggle('active', t==='C');
 }
 function addStamp(){
   const el = window.lastCell;
@@ -404,7 +590,7 @@ async function exportPng(){
     if(typeof html2canvas === 'undefined') throw new Error('html2canvas 未加载（需联网访问 CDN）');
     const canvas = await html2canvas(el, {scale:2, useCORS:true, backgroundColor:null, logging:false});
     const a = document.createElement('a');
-    a.download = (el.id==='tplA'?'直播预告_':'排班表_') + Date.now() + '.png';
+    a.download = ({tplA:'直播预告_', tplB:'排班表_', tplC:'手帐周计划_'})[el.id] + Date.now() + '.png';
     a.href = canvas.toDataURL('image/png');
     a.click();
   }catch(err){ alert('导出失败：' + err.message); }
@@ -413,6 +599,10 @@ async function exportPng(){
 
 renderA();
 renderB();
+renderC();
+/* 支持 ?tpl=A/B/C 直接打开指定模板 */
+const qTpl = new URLSearchParams(location.search).get('tpl');
+if(qTpl) switchTpl(qTpl.toUpperCase());
 </script>
 </body>
 </html>
